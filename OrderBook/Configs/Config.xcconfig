@@ -1,0 +1,11 @@
+//
+//  Config.xcconfig
+//  OrderBook
+//
+//  Created by Indra Permana on 15/06/23.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+BASE_URL = wss:/$()/ws.bitmex.com

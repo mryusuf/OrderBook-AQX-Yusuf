@@ -7,18 +7,34 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		825D20D42A3D83140011A4AC /* Array+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825D20D32A3D83140011A4AC /* Array+Ext.swift */; };
+		825D20DC2A3D92070011A4AC /* OrderBookRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825D20DB2A3D92060011A4AC /* OrderBookRow.swift */; };
+		825D20DF2A3DA67D0011A4AC /* RecentTradesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825D20DE2A3DA67D0011A4AC /* RecentTradesScreen.swift */; };
 		82CEE9692A38C7CE00EB190D /* OrderBookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82CEE9682A38C7CE00EB190D /* OrderBookApp.swift */; };
-		82CEE96B2A38C7CE00EB190D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82CEE96A2A38C7CE00EB190D /* ContentView.swift */; };
+		82CEE96B2A38C7CE00EB190D /* OrderBookScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82CEE96A2A38C7CE00EB190D /* OrderBookScreen.swift */; };
 		82CEE96D2A38C7D000EB190D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82CEE96C2A38C7D000EB190D /* Assets.xcassets */; };
 		82CEE9702A38C7D000EB190D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82CEE96F2A38C7D000EB190D /* Preview Assets.xcassets */; };
+		82E5F6AF2A3B2CD100B9F9D1 /* APIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E5F6AE2A3B2CD100B9F9D1 /* APIConfig.swift */; };
+		82E5F6B42A3B2F7600B9F9D1 /* WebSocketRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E5F6B32A3B2F7600B9F9D1 /* WebSocketRepository.swift */; };
+		82E5F6B62A3B308A00B9F9D1 /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E5F6B52A3B308A00B9F9D1 /* Endpoints.swift */; };
+		82E5F6B92A3B42B900B9F9D1 /* OrderBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E5F6B82A3B42B900B9F9D1 /* OrderBook.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		825D20D32A3D83140011A4AC /* Array+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Ext.swift"; sourceTree = "<group>"; };
+		825D20DB2A3D92060011A4AC /* OrderBookRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookRow.swift; sourceTree = "<group>"; };
+		825D20DE2A3DA67D0011A4AC /* RecentTradesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentTradesScreen.swift; sourceTree = "<group>"; };
 		82CEE9652A38C7CE00EB190D /* OrderBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OrderBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82CEE9682A38C7CE00EB190D /* OrderBookApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookApp.swift; sourceTree = "<group>"; };
-		82CEE96A2A38C7CE00EB190D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		82CEE96A2A38C7CE00EB190D /* OrderBookScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookScreen.swift; sourceTree = "<group>"; };
 		82CEE96C2A38C7D000EB190D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		82CEE96F2A38C7D000EB190D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		82E5F6AC2A3B2A4700B9F9D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		82E5F6AD2A3B2C1500B9F9D1 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		82E5F6AE2A3B2CD100B9F9D1 /* APIConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfig.swift; sourceTree = "<group>"; };
+		82E5F6B32A3B2F7600B9F9D1 /* WebSocketRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketRepository.swift; sourceTree = "<group>"; };
+		82E5F6B52A3B308A00B9F9D1 /* Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
+		82E5F6B82A3B42B900B9F9D1 /* OrderBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBook.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +48,67 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		825D20D22A3D83080011A4AC /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				825D20D32A3D83140011A4AC /* Array+Ext.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		825D20D82A3D91D50011A4AC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				82CEE9682A38C7CE00EB190D /* OrderBookApp.swift */,
+				825D20DD2A3DA66C0011A4AC /* RecentTrades */,
+				825D20D92A3D91E00011A4AC /* OrderBook */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		825D20D92A3D91E00011A4AC /* OrderBook */ = {
+			isa = PBXGroup;
+			children = (
+				825D20DA2A3D91E80011A4AC /* Components */,
+				82CEE96A2A38C7CE00EB190D /* OrderBookScreen.swift */,
+			);
+			path = OrderBook;
+			sourceTree = "<group>";
+		};
+		825D20DA2A3D91E80011A4AC /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				825D20DB2A3D92060011A4AC /* OrderBookRow.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		825D20DD2A3DA66C0011A4AC /* RecentTrades */ = {
+			isa = PBXGroup;
+			children = (
+				825D20DE2A3DA67D0011A4AC /* RecentTradesScreen.swift */,
+			);
+			path = RecentTrades;
+			sourceTree = "<group>";
+		};
+		825D20E02A3DD1A00011A4AC /* Configs */ = {
+			isa = PBXGroup;
+			children = (
+				82E5F6AD2A3B2C1500B9F9D1 /* Config.xcconfig */,
+				82E5F6AE2A3B2CD100B9F9D1 /* APIConfig.swift */,
+			);
+			path = Configs;
+			sourceTree = "<group>";
+		};
+		825D20E12A3DD1B00011A4AC /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				82CEE96C2A38C7D000EB190D /* Assets.xcassets */,
+				82CEE96E2A38C7D000EB190D /* Preview Content */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		82CEE95C2A38C7CE00EB190D = {
 			isa = PBXGroup;
 			children = (
@@ -51,10 +128,13 @@
 		82CEE9672A38C7CE00EB190D /* OrderBook */ = {
 			isa = PBXGroup;
 			children = (
-				82CEE9682A38C7CE00EB190D /* OrderBookApp.swift */,
-				82CEE96A2A38C7CE00EB190D /* ContentView.swift */,
-				82CEE96C2A38C7D000EB190D /* Assets.xcassets */,
-				82CEE96E2A38C7D000EB190D /* Preview Content */,
+				825D20D22A3D83080011A4AC /* Extensions */,
+				82E5F6B72A3B42B100B9F9D1 /* Models */,
+				82E5F6B02A3B2E5400B9F9D1 /* Repositories */,
+				82E5F6AC2A3B2A4700B9F9D1 /* Info.plist */,
+				825D20D82A3D91D50011A4AC /* Views */,
+				825D20E12A3DD1B00011A4AC /* Resources */,
+				825D20E02A3DD1A00011A4AC /* Configs */,
 			);
 			path = OrderBook;
 			sourceTree = "<group>";
@@ -65,6 +145,23 @@
 				82CEE96F2A38C7D000EB190D /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		82E5F6B02A3B2E5400B9F9D1 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				82E5F6B32A3B2F7600B9F9D1 /* WebSocketRepository.swift */,
+				82E5F6B52A3B308A00B9F9D1 /* Endpoints.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		82E5F6B72A3B42B100B9F9D1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				82E5F6B82A3B42B900B9F9D1 /* OrderBook.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +234,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				82CEE96B2A38C7CE00EB190D /* ContentView.swift in Sources */,
+				82CEE96B2A38C7CE00EB190D /* OrderBookScreen.swift in Sources */,
+				82E5F6B92A3B42B900B9F9D1 /* OrderBook.swift in Sources */,
+				82E5F6B42A3B2F7600B9F9D1 /* WebSocketRepository.swift in Sources */,
 				82CEE9692A38C7CE00EB190D /* OrderBookApp.swift in Sources */,
+				82E5F6AF2A3B2CD100B9F9D1 /* APIConfig.swift in Sources */,
+				825D20DF2A3DA67D0011A4AC /* RecentTradesScreen.swift in Sources */,
+				825D20D42A3D83140011A4AC /* Array+Ext.swift in Sources */,
+				82E5F6B62A3B308A00B9F9D1 /* Endpoints.swift in Sources */,
+				825D20DC2A3D92070011A4AC /* OrderBookRow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,6 +251,7 @@
 /* Begin XCBuildConfiguration section */
 		82CEE9712A38C7D000EB190D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 82E5F6AD2A3B2C1500B9F9D1 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -207,6 +312,7 @@
 		};
 		82CEE9722A38C7D000EB190D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 82E5F6AD2A3B2C1500B9F9D1 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -266,15 +372,17 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"OrderBook/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"OrderBook/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = DS8DA7YN5X;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = OrderBook/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -295,15 +403,17 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"OrderBook/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"OrderBook/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = DS8DA7YN5X;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = OrderBook/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
