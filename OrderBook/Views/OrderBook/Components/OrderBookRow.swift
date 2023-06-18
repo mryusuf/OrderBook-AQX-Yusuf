@@ -11,30 +11,15 @@ struct OrderBookRow: View {
     
     let orderRow: OrderBookRowViewModel
     
-    private let priceFormatter: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.maximumFractionDigits = 1
-        formatter.minimumFractionDigits = 1
-        formatter.numberStyle = .decimal
-        return formatter
-    }()
-    private let sizeFormatter: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.minimumFractionDigits = 0
-        formatter.numberStyle = .decimal
-        return formatter
-    }()
-    
-    
     var body: some View {
-        HStack {
+        HStack(spacing: 0) {
             HStack {
-                Text(sizeFormatter.string(for: orderRow.buy?.size) ?? "")
+                Text(NumberFormatter.sizeFormatter.string(for: orderRow.buy?.size) ?? "")
                     .font(.monospacedDigit(.footnote)())
                 
                 Spacer()
                 
-                Text(priceFormatter.string(for: orderRow.buy?.price) ?? "")
+                Text(NumberFormatter.priceFormatter.string(for: orderRow.buy?.price) ?? "")
                     .font(.monospacedDigit(.body)())
                     .fontWeight(.bold)
                     .padding(.vertical, 4)
@@ -44,7 +29,7 @@ struct OrderBookRow: View {
                             Color
                                 .green.opacity(0.2)
                                 .frame(
-                                    maxWidth: CGFloat((orderRow.buy?.size ?? 0)) / 1000
+                                    width: CGFloat((orderRow.buy?.size ?? 0)) / 1000
                                 )
                         }
                     .foregroundColor(Color.green)
@@ -52,7 +37,7 @@ struct OrderBookRow: View {
             }
             
             HStack {
-                Text(priceFormatter.string(for: orderRow.sell?.price) ?? "")
+                Text(NumberFormatter.priceFormatter.string(for: orderRow.sell?.price) ?? "")
                     .font(.monospacedDigit(.body)())
                     .fontWeight(.bold)
                     .padding(.vertical, 4)
@@ -62,13 +47,13 @@ struct OrderBookRow: View {
                             Color
                                 .red.opacity(0.2)
                                 .frame(
-                                    maxWidth: CGFloat((orderRow.sell?.size ?? 0)) / 1000)
+                                    width: CGFloat((orderRow.sell?.size ?? 0)) / 1000)
                         }
                     .foregroundColor(Color.red)
                 
                 Spacer()
                 
-                Text(sizeFormatter.string(for: orderRow.sell?.size) ?? "")
+                Text(NumberFormatter.sizeFormatter.string(for: orderRow.sell?.size) ?? "")
                     .font(.monospacedDigit(.footnote)())
                 
             }
@@ -80,8 +65,8 @@ struct OrderBookRow_Previews: PreviewProvider {
     
     static var previews: some View {
         
-        let buyData = OrderBookData(symbol: "XBTUSD", id: 0, side: .buy, size: 100, price: 25000, timestamp: "")
-        let sellData = OrderBookData(symbol: "XBTUSD", id: 0, side: .sell, size: 100, price: 24000, timestamp: "")
+        let buyData = OrderBookData(symbol: "XBTUSD", id: 0, side: .buy, size: 5800, price: 25000, timestamp: Date.now.ISO8601Format())
+        let sellData = OrderBookData(symbol: "XBTUSD", id: 0, side: .sell, size: 10000, price: 24000, timestamp: Date.now.ISO8601Format())
         let orderRow = OrderBookRowViewModel(buy: buyData, sell: sellData)
         
         OrderBookRow(orderRow: orderRow)

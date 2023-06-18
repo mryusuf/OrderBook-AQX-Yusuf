@@ -13,16 +13,15 @@ struct OrderBookScreen: View {
     @State private var showingAlert = false
     @State private var errorMessage = ""
     
-    private var columns: [GridItem] = [GridItem(.flexible())]
-    
     private let stream = WebSocketRepository(url: Endpoints.orderBook.url)
+    private let showingOrdersCount = 20
     
     var body: some View {
         NavigationView {
             
             ScrollView {
                 HStack {
-                    Text("Qty")
+                    Text("Size")
                     
                     Spacer()
                     
@@ -30,19 +29,20 @@ struct OrderBookScreen: View {
                     
                     Spacer()
                     
-                    Text("Qty")
+                    Text("Size")
                 }
                 .padding(.horizontal, 12)
                 
                 Divider()
                 
-                LazyVGrid(columns: columns) {
+                LazyVStack() {
                     ForEach(orderRows) { (orderRow: OrderBookRowViewModel) in
                         OrderBookRow(orderRow: orderRow)
                     }
                     .padding(.vertical, -4)
                 }
                 .padding(.horizontal, 12)
+                .padding(.top, -4)
             }
             .task {
                 do {
@@ -58,19 +58,19 @@ struct OrderBookScreen: View {
                                 if order.side == .buy {
                                     let insertionIndex = buyOrders.insertionIndexOf(order) { $0.price ?? 0 > $1.price ?? 0 }
                                     buyOrders.insert(order, at: insertionIndex)
-                                    if buyOrders.count > 20 {
+                                    if buyOrders.count > showingOrdersCount {
                                         buyOrders.removeLast()
                                     }
                                 } else if order.side == .sell {
                                     let insertionIndex = sellOrders.insertionIndexOf(order) { $0.price ?? 0 < $1.price ?? 0 }
                                     sellOrders.insert(order, at: insertionIndex)
-                                    if sellOrders.count > 20 {
+                                    if sellOrders.count > showingOrdersCount {
                                         sellOrders.removeLast()
                                     }
                                 }
                             }
                             var rows: [OrderBookRowViewModel] = []
-                            for i in 0..<20 {
+                            for i in 0..<showingOrdersCount {
                                 // safely get buyOrders and sellOrders at i and make new OrderBookRowViewModel
                                 let row = OrderBookRowViewModel(buy: buyOrders[safe: i], sell: sellOrders[safe: i])
                                 rows.append(row)
@@ -80,11 +80,9 @@ struct OrderBookScreen: View {
                             updateOrder.data?.forEach { (order: OrderBookData) in
                                 if order.side == .buy {
                                     let insertionIndex = orderRows.insertionIndexOf(order, forSide: .buy) { $0?.price ?? 0 > $1?.price ?? 0 }
-                                    print("insert: ", insertionIndex)
                                     orderRows[insertionIndex >= orderRows.count ? orderRows.count - 1 : insertionIndex].buy = order
                                 } else {
                                     let insertionIndex = orderRows.insertionIndexOf(order, forSide: .sell) { $0?.price ?? 0 < $1?.price ?? 0 }
-                                    print("insert: ", insertionIndex)
                                     orderRows[insertionIndex >= orderRows.count ? orderRows.count - 1 : insertionIndex].sell = order
                                 }
                             }
