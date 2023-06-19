@@ -32,20 +32,34 @@ struct OrderBookScreen: View {
             
             Divider()
             
-            LazyVStack() {
-                ForEach(viewModel.orderRows) { (orderRow: OrderBookRowViewModel) in
-                    OrderBookRow(orderRow: orderRow)
+            switch viewModel.state {
+            case .idle:
+                Color.clear
+            case .loading:
+                Color.clear
+                    .frame(height: 100)
+                ProgressView()
+            case .failed(let error):
+                VStack {
+                    Text("Error")
+                        .foregroundColor(Color.red)
+                    Text(error.localizedDescription)
+                        .font(.footnote)
                 }
-                .padding(.vertical, -4)
+                .padding()
+            case .loaded(let orderRows):
+                LazyVStack() {
+                    ForEach(orderRows) { (orderRow: OrderBookRowViewModel) in
+                        OrderBookRow(orderRow: orderRow)
+                    }
+                    .padding(.vertical, -4)
+                }
+                .padding(.horizontal, 12)
+                .padding(.top, -4)
             }
-            .padding(.horizontal, 12)
-            .padding(.top, -4)
         }
         .task {
             await viewModel.fetchOrderBooks()
-        }
-        .alert(isPresented: $viewModel.showingAlert) {
-            Alert(title: Text("Error"), message: Text(viewModel.errorMessage))
         }
     }
     

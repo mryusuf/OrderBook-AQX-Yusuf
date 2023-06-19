@@ -42,14 +42,34 @@ struct RecentTradesScreen: View {
             
             Divider()
             
-            LazyVStack() {
-                ForEach(viewModel.recentTrades) { (trade: RecentTradeData) in
-                    RecentTradeRow(trade: trade)
-                        .padding(.vertical, 4)
+            switch viewModel.state {
+            case .idle:
+                Color.clear
+            case .loading:
+                Color.clear
+                    .frame(height: 100)
+                ProgressView()
+            case .failed(let error):
+                Color.clear
+                    .frame(height: 100)
+                
+                VStack {
+                    Text("Error")
+                        .foregroundColor(Color.red)
+                    Text(error.localizedDescription)
+                        .font(.footnote)
                 }
+                .padding()
+            case .loaded(let recentTrades):
+                LazyVStack() {
+                    ForEach(recentTrades) { (trade: RecentTradeData) in
+                        RecentTradeRow(trade: trade)
+                            .padding(.vertical, 4)
+                    }
+                }
+                .padding(.horizontal, 12)
+                .padding(.top, -4)
             }
-            .padding(.horizontal, 12)
-            .padding(.top, -4)
         }
         .task {
             await viewModel.fetchRecentTrades()

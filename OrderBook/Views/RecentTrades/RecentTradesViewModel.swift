@@ -8,18 +8,16 @@
 import SwiftUI
 
 @MainActor protocol RecentTradesViewModel: ObservableObject {
-    var recentTrades: [RecentTradeData] { get }
-    var showingAlert: Bool { get }
-    var errorMessage: String { get }
+    var state: ScreenState<[RecentTradeData]> { get }
     
     func fetchRecentTrades() async
 }
 
 @MainActor final class RecentTradesDefaultViewModel: RecentTradesViewModel {
     
-    @Published internal var recentTrades: [RecentTradeData] = []
-    @Published internal var showingAlert = false
-    @Published internal var errorMessage = ""
+    @Published private(set) var state: ScreenState<[RecentTradeData]> = .idle
+    
+    var recentTrades: [RecentTradeData] = []
     
     private let showingTradesCount = 30
     private let stream: WebSocketRepository
@@ -29,6 +27,7 @@ import SwiftUI
     }
     
     func fetchRecentTrades() async {
+        state = .loading
         do {
             for try await message in stream {
                 let updateTrade = try message.toRecentTrade()
@@ -41,12 +40,14 @@ import SwiftUI
                             recentTrades.removeLast()
                         }
                     }
+                    state = .loaded(recentTrades)
                 case .update:
                     updateTrade.data?.forEach { (trade: RecentTradeData) in
                         if let row = recentTrades.firstIndex(where: {$0.id == trade.id}) {
                             recentTrades[row] = trade
                         }
                     }
+                    state = .loaded(recentTrades)
                 case .delete:
                     debugPrint("ignoring delete for now")
                 case .none:
@@ -56,8 +57,7 @@ import SwiftUI
             }
         } catch (let error) {
             debugPrint("Error: \(error.localizedDescription)")
-            errorMessage = error.localizedDescription
-            showingAlert = true
+            state = .failed(error)
         }
     }
 }

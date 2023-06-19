@@ -8,18 +8,16 @@
 import SwiftUI
 
 @MainActor protocol OrderBookViewModel: ObservableObject {
-    var orderRows: [OrderBookRowViewModel] { get }
-    var showingAlert: Bool { get }
-    var errorMessage: String { get }
+    var state: ScreenState<[OrderBookRowViewModel]> { get }
     
     func fetchOrderBooks() async
 }
 
 @MainActor final class OrderBookDefaultViewModel: OrderBookViewModel {
     
-    @Published internal var orderRows: [OrderBookRowViewModel] = []
-    @Published internal var showingAlert = false
-    @Published internal var errorMessage = ""
+    @Published private(set) var state: ScreenState<[OrderBookRowViewModel]> = .idle
+    
+    var orderRows: [OrderBookRowViewModel] = []
     
     private let showingOrdersCount = 20
     private let stream: WebSocketRepository
@@ -29,11 +27,12 @@ import SwiftUI
     }
     
     func fetchOrderBooks() async {
+        state = .loading
         do {
             for try await message in stream {
                 let updateOrder = try message.toOrderBook()
                 switch updateOrder.action {
-                    
+                
                 case .partial:
                     var buyOrders: [OrderBookData] = []
                     var sellOrders: [OrderBookData] = []
@@ -59,6 +58,7 @@ import SwiftUI
                         rows.append(row)
                     }
                     orderRows = rows
+                    state = .loaded(orderRows)
                 case .insert:
                     updateOrder.data?.forEach { (order: OrderBookData) in
                         if order.side == .buy {
@@ -69,6 +69,8 @@ import SwiftUI
                             orderRows[insertionIndex >= orderRows.count ? orderRows.count - 1 : insertionIndex].sell = order
                         }
                     }
+                    
+                    state = .loaded(orderRows)
                 case .update:
                     updateOrder.data?.forEach { (order: OrderBookData) in
                         if order.side == .buy {
@@ -81,6 +83,8 @@ import SwiftUI
                             }
                         }
                     }
+                    
+                    state = .loaded(orderRows)
                 case .delete:
                     //                            updateOrder.data?.forEach { (order: OrderBookData) in
                     //                                if order.side == .buy {
@@ -95,10 +99,8 @@ import SwiftUI
                 }
             }
         } catch (let error) {
-            
             debugPrint("Error: \(error.localizedDescription)")
-            errorMessage = error.localizedDescription
-            showingAlert = true
+            state = .failed(error)
         }
     }
 }

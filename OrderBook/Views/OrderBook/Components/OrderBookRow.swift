@@ -22,7 +22,7 @@ struct OrderBookRow: View {
                 Text(NumberFormatter.priceFormatter.string(for: orderRow.buy?.price) ?? "")
                     .font(.monospacedDigit(.footnote)())
                     .fontWeight(.bold)
-                    .padding(.vertical, 8)
+                    .padding(.all, 6)
                     .frame(maxWidth: .infinity, alignment: .trailing)
                     .background(
                         alignment: .trailing) {
@@ -40,7 +40,7 @@ struct OrderBookRow: View {
                 Text(NumberFormatter.priceFormatter.string(for: orderRow.sell?.price) ?? "")
                     .font(.monospacedDigit(.footnote)())
                     .fontWeight(.bold)
-                    .padding(.vertical, 8)
+                    .padding(.all, 6)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .background(
                         alignment: .leading) {
