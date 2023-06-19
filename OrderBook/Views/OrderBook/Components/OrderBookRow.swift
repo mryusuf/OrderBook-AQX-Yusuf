@@ -20,9 +20,9 @@ struct OrderBookRow: View {
                 Spacer()
                 
                 Text(NumberFormatter.priceFormatter.string(for: orderRow.buy?.price) ?? "")
-                    .font(.monospacedDigit(.body)())
+                    .font(.monospacedDigit(.footnote)())
                     .fontWeight(.bold)
-                    .padding(.vertical, 4)
+                    .padding(.vertical, 8)
                     .frame(maxWidth: .infinity, alignment: .trailing)
                     .background(
                         alignment: .trailing) {
@@ -38,9 +38,9 @@ struct OrderBookRow: View {
             
             HStack {
                 Text(NumberFormatter.priceFormatter.string(for: orderRow.sell?.price) ?? "")
-                    .font(.monospacedDigit(.body)())
+                    .font(.monospacedDigit(.footnote)())
                     .fontWeight(.bold)
-                    .padding(.vertical, 4)
+                    .padding(.vertical, 8)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .background(
                         alignment: .leading) {

@@ -8,10 +8,9 @@
 import SwiftUI
 
 struct HomeScreen: View {
-    @State var selectedTab = "Chart"
+    @State var selectedTab = "Order Book"
     var tabs = ["Chart", "Order Book", "Recent Trades"]
 
-    
     var body: some View {
         NavigationView {
             VStack {
@@ -22,8 +21,10 @@ struct HomeScreen: View {
                     Spacer()
                 } else if selectedTab == tabs[1] {
                     OrderBookScreen()
+                        .padding(.top, -16)
                 } else {
                     RecentTradesScreen()
+                        .padding(.top, -16)
                 }
             }
             .navigationTitle(selectedTab)

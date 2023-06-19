@@ -15,7 +15,7 @@ struct RecentTradeRow: View {
     var body: some View {
         HStack {
             Text(NumberFormatter.priceFormatter.string(for: trade.price) ?? "")
-                .font(.monospacedDigit(.body)())
+                .font(.monospacedDigit(.footnote)())
                 .fontWeight(.bold)
             
             Spacer()

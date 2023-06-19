@@ -33,9 +33,3 @@ enum OrderBookSide: String, Codable {
     case buy = "Buy"
     case sell = "Sell"
 }
-
-struct OrderBookRowViewModel: Identifiable {
-    let id = UUID()
-    var buy: OrderBookData?
-    var sell: OrderBookData?
-}

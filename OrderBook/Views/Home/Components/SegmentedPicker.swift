@@ -25,7 +25,7 @@ struct SegementedPicker: View {
                         } label: {
                             VStack(alignment: .leading) {
                                 Text(option)
-                                    .font(.footnote)
+                                    .font(selected == option ? .footnote.bold() : .footnote)
                                     .foregroundColor(selected == option ? .black : .gray)
                             }
                         }
@@ -39,7 +39,7 @@ struct SegementedPicker: View {
                                 Rectangle().fill(Color.teal)
                                     .frame(height: 1)
                                     .matchedGeometryEffect(id: "option", in: underline)
-                                    .padding(.horizontal, 8)
+                                    .padding(.horizontal, 12)
                             }
                         }
 
